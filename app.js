@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 //Public static folder Middleware
 app.use(express.static(path.join(__dirname, "Public")));
+/*
 var people = [
   {
     name: "Mike",
@@ -35,10 +36,10 @@ var people = [
     age: 21
   }
 ];
-
+*/
 
 app.get("/", (req, res) => {
-  res.json(people);
+  res.render('index');
 });
 
 app.listen(3000, () => {
