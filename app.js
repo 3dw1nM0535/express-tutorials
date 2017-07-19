@@ -11,6 +11,10 @@ var logger = (req, res, next) => {
 }
 */
 
+//Views Middleware
+app.set("views", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
 //Body parser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
