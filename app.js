@@ -11,6 +11,10 @@ var logger = (req, res, next) => {
 }
 */
 
+//Body parser Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+
 app.get("/", (req, res) => {
   res.send("Hello world!");
 })
