@@ -12,7 +12,7 @@ var logger = (req, res, next) => {
 */
 
 //Views Middleware
-app.set("views", "ejs");
+app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 //Body parser Middleware
