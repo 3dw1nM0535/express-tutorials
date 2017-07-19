@@ -39,7 +39,8 @@ var people = [
 */
 
 app.get("/", (req, res) => {
-  res.render('index');
+  var title = "Customers";
+  res.render('index', {title});
 });
 
 app.listen(3000, () => {
