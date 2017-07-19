@@ -13,7 +13,10 @@ var logger = (req, res, next) => {
 
 //Body parser Middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: false}));
+
+//Public static folder Middleware
+app.use(express.static(path.join(__dirname, "Public")));
 
 app.get("/", (req, res) => {
   res.send("Hello world!");
