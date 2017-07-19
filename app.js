@@ -17,10 +17,25 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 //Public static folder Middleware
 app.use(express.static(path.join(__dirname, "Public")));
+var people = [
+  {
+    name: "Mike",
+    age: 32
+  },
+  {
+    name: "Brian",
+    age: 22
+  },
+  {
+    name: "Millicent",
+    age: 21
+  }
+];
+
 
 app.get("/", (req, res) => {
-  res.send("Hello world!");
-})
+  res.json(people);
+});
 
 app.listen(3000, () => {
   console.log("Server listening on....");
