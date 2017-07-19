@@ -12,6 +12,12 @@ var logger = (req, res, next) => {
 }
 */
 
+//Global variblese
+app.use((req, res, next) => {
+  res.local.errors = null;
+  next();
+})
+
 //Express Validator Middleware
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
@@ -59,16 +65,28 @@ var people = [
 
 app.get("/", (req, res) => {
   var title = "Customers";
-  res.render('index', {title});
+  res.render('index', {title: title});
 });
 
 app.post("/users/add", (req, res) => {
-  var newUser = {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email
-  };
-  console.log(newUser);
+
+  req.checkBody("first_name", "Firstname is Required!").notEmpty();
+  req.checkBody("last_name", "Lastname is Require!").notEmpty();
+  req.checkBody("email", "Email is required!").notEmpty();
+
+  var errors = req.validationErrors();
+
+  if(errors) {
+    var title = "Customers";
+    res.render('index', {title: title, errors: errors});
+  } else {
+    var newUser = {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email
+    };
+    console.log("SUCCESS!");
+  }
 
 });
 
