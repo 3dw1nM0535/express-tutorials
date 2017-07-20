@@ -74,8 +74,8 @@ app.get('/', (req, res) => {
 
 app.post('/users/add', (req, res) => {
   req.checkBody('first_name', 'Firstname is Required!').notEmpty();
-  req.checkBody('last_name', 'Lastname is Require!').notEmpty();
-  req.checkBody('email', 'Email is required!').notEmpty();
+  req.checkBody('last_name', 'Lastname is Required!').notEmpty();
+  req.checkBody('email', 'Email is Required!').notEmpty();
 
   var errors = req.validationErrors();
 
