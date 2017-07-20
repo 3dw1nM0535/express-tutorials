@@ -65,7 +65,7 @@ var people = [
 
 app.get("/", (req, res) => {
   var title = "Customers";
-  res.render('index', {title: title});
+  res.render('index', {title: title, errors: errors});
 });
 
 app.post("/users/add", (req, res) => {
