@@ -23,25 +23,25 @@ app.use((req, res, next) => {
 //Express Validator Middleware
 app.use(expressValidator({
   errorFormatter: function (param, msg, value) {
-      var namespace = param.split('.'),
-        root    = namespace.shift(),
-        formParam = root;
+      var namespace = param.split('.');
+      var root    = namespace.shift();
+      var  formParam = root;
+      while (namespace.length) {
+        formParam += '[' + namespace.shift() + ']';
+      }
 
-    while(namespace.length) {
-      formParam += '[' + namespace.shift() + ']';
-    }
-    return {
-      param : formParam,
-      msg   : msg,
-      value : value,
-    };
-  }
+      return {
+        param: formParam,
+        msg: msg,
+        value: value,
+      };
+    },
 
 }));
 
 //Views Middleware
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'Views'));
+app.set('views', path.join(__dirname, 'views'));
 
 //Body parser Middleware
 app.use(bodyParser.json());
