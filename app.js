@@ -13,7 +13,7 @@ var logger = (req, res, next) => {
 }
 */
 
-//Global vars
+//Global vars Middleware
 app.use((req, res, next) => {
   res.local.errors = null;
   next();
