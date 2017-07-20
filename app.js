@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-// var path = require('path'); //Core module in node. No need to require it.
+var path = require('path');
 
 var expressValidator = require('express-validator');
 
@@ -94,6 +94,6 @@ app.post('/users/add', (req, res) => {
 
 });
 
-app.listen(3000, () => {
+app.listen(3000, '127.0.0.1', () => {
   console.log('Server listening on....');
 });
