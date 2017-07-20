@@ -11,12 +11,11 @@ var logger = (req, res, next) => {
   next();
 }
 */
-
-//Global variblese
+//Global variable
 app.use((req, res, next) => {
   res.local.errors = null;
   next();
-})
+});
 
 //Express Validator Middleware
 app.use(expressValidator({
@@ -34,6 +33,7 @@ app.use(expressValidator({
       value : value
     };
   }
+
 }));
 
 //Views Middleware
