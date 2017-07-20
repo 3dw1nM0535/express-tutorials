@@ -49,7 +49,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //Public static folder Middleware
 app.use(express.static(path.join(__dirname, 'Public')));
+
 /*
+Object to be returned as json
 var people = [
   {
     name: "Mike",
