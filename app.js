@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+
 // var path = require('path'); //Core module in node. No need to require it.
+
 var expressValidator = require('express-validator');
 
 var app = express();
@@ -11,6 +13,7 @@ var logger = (req, res, next) => {
   next();
 }
 */
+
 //Global vars
 app.use((req, res, next) => {
   res.local.errors = null;
@@ -19,10 +22,10 @@ app.use((req, res, next) => {
 
 //Express Validator Middleware
 app.use(expressValidator({
-  errorFormatter: function(param, msg, value) {
-      var namespace = param.split('.')
-      , root    = namespace.shift()
-      , formParam = root;
+  errorFormatter: function (param, msg, value) {
+      var namespace = param.split('.'),
+        root    = namespace.shift(),
+        formParam = root;
 
     while(namespace.length) {
       formParam += '[' + namespace.shift() + ']';
@@ -30,22 +33,22 @@ app.use(expressValidator({
     return {
       param : formParam,
       msg   : msg,
-      value : value
+      value : value,
     };
   }
 
 }));
 
 //Views Middleware
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'Views'));
 
 //Body parser Middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //Public static folder Middleware
-app.use(express.static(path.join(__dirname, "Public")));
+app.use(express.static(path.join(__dirname, 'Public')));
 /*
 var people = [
   {
@@ -63,33 +66,32 @@ var people = [
 ];
 */
 
-app.get("/", (req, res) => {
-  var title = "Customers";
-  res.render('index', {title: title, errors: errors});
+app.get('/', (req, res) => {
+  var title = 'Customers';
+  res.render('index', { title: title, errors: errors });
 });
 
-app.post("/users/add", (req, res) => {
-
-  req.checkBody("first_name", "Firstname is Required!").notEmpty();
-  req.checkBody("last_name", "Lastname is Require!").notEmpty();
-  req.checkBody("email", "Email is required!").notEmpty();
+app.post('/users/add', (req, res) => {
+  req.checkBody('first_name', 'Firstname is Required!').notEmpty();
+  req.checkBody('last_name', 'Lastname is Require!').notEmpty();
+  req.checkBody('email', 'Email is required!').notEmpty();
 
   var errors = req.validationErrors();
 
-  if(errors) {
-    var title = "Customers";
-    res.render('index', {title: title, errors: errors});
+  if (errors) {
+    var title = 'Customers';
+    res.render('index', { title: title, errors: errors });
   } else {
     var newUser = {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      email: req.body.email
+      email: req.body.email,
     };
-    console.log("SUCCESS!");
+    console.log('SUCCESS!');
   }
 
 });
 
 app.listen(3000, () => {
-  console.log("Server listening on....");
+  console.log('Server listening on....');
 });
