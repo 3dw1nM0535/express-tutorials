@@ -4,6 +4,8 @@ var path = require('path');
 var expressValidator = require('express-validator');
 var express = require('express');
 
+var app = express();
+
 /*
 var logger = (req, res, next) => {
   console.log("Logging...");
@@ -13,7 +15,7 @@ var logger = (req, res, next) => {
 
 //Global vars Middleware
 app.use((req, res, next) => {
-  res.local.errors = null;
+  res.locals.errors = null;
   next();
 });
 
@@ -67,7 +69,7 @@ var people = [
 
 app.get('/', (req, res) => {
   var title = 'Customers';
-  res.render('index', { title: title, errors: errors });
+  res.render('index', { title: title });
 });
 
 app.post('/users/add', (req, res) => {
