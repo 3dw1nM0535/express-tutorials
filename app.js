@@ -88,11 +88,11 @@ app.post('/users/add', (req, res) => {
       last_name: req.body.last_name,
       email: req.body.email,
     };
-    console.log('SUCCESS!');
+    console.log('SUCCESS!'); //Log to console to test code trust
   }
 
 });
 
 app.listen(3000, '127.0.0.1', () => {
-  console.log('Server listening on....');
+  console.log('Server listening on....'); //Log to console to test server legitimacy
 });
